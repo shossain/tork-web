@@ -74,7 +74,7 @@ export default async function Job({ params: { id } }: { params: params }) {
         ) : (
           <></>
         )}
-        <ViewJobLog job={job} />
+        {/* <ViewJobLog job={job} />
         <Link href={`/jobs/duplicate?id=${job.id}`}>
           <button
             type="button"
@@ -82,7 +82,7 @@ export default async function Job({ params: { id } }: { params: params }) {
           >
             Duplicate
           </button>
-        </Link>
+        </Link> */}
         {job.state === "RUNNING" || job.state === "SCHEDULED" ? (
           <CancelJob job={job} />
         ) : (
@@ -97,13 +97,13 @@ export default async function Job({ params: { id } }: { params: params }) {
       <Table>
         <thead className="bg-gray-50">
           <tr>
-            <THeader name="Name" />
+            <THeader name="Description" />
             <THeader name="Started at" />
             <THeader name="Ended at" />
-            <THeader name="Runtime" />
+            {/* <THeader name="Runtime" /> */}
             <THeader name="State" />
             <THeader name="Output" />
-            <THeader name="" />
+            <THeader name="Next Step" />
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-200 bg-white">
@@ -122,20 +122,20 @@ export default async function Job({ params: { id } }: { params: params }) {
                   ? formatTimestamp(task.failedAt)
                   : ""}
               </td>
-              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+              {/* <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 {task.completedAt
                   ? formatRuntime(task.state, task.startedAt, task.completedAt)
                   : formatRuntime(task.state, task.startedAt, task.failedAt)}
-              </td>
+              </td> */}
               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 <StateBadge name={task.state} />
               </td>
               <td className="px-3 py-4 text-sm text-gray-500 hidden md:table-cell">
-                {truncateString(task.error ? task.error : task.result, 30)}
+              <ViewTask task={task} />
               </td>
-              <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 flex gap-2 justify-end">
+              <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 flex gap-2">
                 <ViewTaskLog task={task} />
-                <ViewTask task={task} />
+                {/* <ViewTask task={task} /> */}
               </td>
             </tr>
           ))}

@@ -26,7 +26,7 @@ export default function ViewTaskLog({ task }: { task: Task }) {
           setTotalPages(log.totalPages);
           return log.items
             .map((it) => {
-              return it.contents.split("\n").reverse().join("\n");
+              return "Creating SITREP from " + it.contents.split("\n").reverse().join("\n");
             })
             .join("")
             .trim();
@@ -70,7 +70,7 @@ export default function ViewTaskLog({ task }: { task: Task }) {
           setOpen(true);
         }}
       >
-        Log
+        Create SITREP
       </button>
       <Transition.Root show={open} as={Fragment}>
         <Dialog
@@ -108,7 +108,7 @@ export default function ViewTaskLog({ task }: { task: Task }) {
               >
                 <Dialog.Panel className="relative transform rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:p-6 sm:w-full sm:max-w-4xl">
                   <p className="font-mono bg-gray-200 p-4 text-xs whitespace-pre-line max-h-96 overflow-scroll">
-                    {contents ? contents : "no logs to show"}
+                    {contents ? contents : ""}
                   </p>
 
                   <div className="flex gap-1 mt-4 justify-between">
