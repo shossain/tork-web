@@ -48,11 +48,16 @@ export default function ViewTask({ task }: { task: Task }) {
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
                 <Dialog.Panel className="relative transform rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:p-6 sm:w-full sm:max-w-4xl">
-                  <p className="font-mono bg-gray-200 p-4 text-xs whitespace-pre overflow-scroll">                  
-                  <video autoPlay loop>                    
+                  <p className="bg-gray-200 p-4 whitespace-pre overflow-scroll">                  
+                  {!task.name.includes("created") && <video autoPlay loop>                    
                     <source src="http://localhost:3000/550e8400.mp4" type="video/mp4"/>
                     Your browser does not support the video tag.
-                  </video>
+                  </video>}
+                  {task.name.includes("created") && <>
+                    <h2>Ttile</h2>
+                    <br />
+                    <p>Description</p>
+                  </>}
                   </p>
 
                   <button

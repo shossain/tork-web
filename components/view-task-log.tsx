@@ -26,7 +26,7 @@ export default function ViewTaskLog({ task }: { task: Task }) {
           setTotalPages(log.totalPages);
           return log.items
             .map((it) => {
-              return "Creating SITREP from " + it.contents.split("\n").reverse().join("\n");
+              return task.name.includes("created") ? "Sending email to team@pytho.ai" : "Creating SITREP from " + it.contents.split("\n").reverse().join("\n");
             })
             .join("")
             .trim();
@@ -62,7 +62,7 @@ export default function ViewTaskLog({ task }: { task: Task }) {
 
   return (
     <>
-      <button
+      {task.name.includes("tank") && <button
         type="button"
         className="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 hover:bg-gray-50"
         onClick={() => {
@@ -71,7 +71,17 @@ export default function ViewTaskLog({ task }: { task: Task }) {
         }}
       >
         Create SITREP
-      </button>
+      </button>}
+      {task.name.includes("created") && <button
+        type="button"
+        className="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 hover:bg-gray-50"
+        onClick={() => {
+          refreshLog(page);
+          setOpen(true);
+        }}
+      >
+        Notify
+      </button>}
       <Transition.Root show={open} as={Fragment}>
         <Dialog
           as="div"
@@ -107,7 +117,7 @@ export default function ViewTaskLog({ task }: { task: Task }) {
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
                 <Dialog.Panel className="relative transform rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:p-6 sm:w-full sm:max-w-4xl">
-                  <p className="font-mono bg-gray-200 p-4 text-xs whitespace-pre-line max-h-96 overflow-scroll">
+                  <p className="bg-gray-200 p-4 whitespace-pre-line max-h-96 overflow-scroll">
                     {contents ? contents : ""}
                   </p>
 
@@ -149,7 +159,7 @@ export default function ViewTaskLog({ task }: { task: Task }) {
                       ) : (
                         <></>
                       )}
-                      <button
+                      {/* <button
                         type="button"
                         disabled={page >= totalPages || tail}
                         title="Previous Page"
@@ -178,7 +188,7 @@ export default function ViewTaskLog({ task }: { task: Task }) {
                           className="h-5 w-5 text-black"
                           aria-hidden="true"
                         />
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                 </Dialog.Panel>
