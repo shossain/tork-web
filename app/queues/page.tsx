@@ -1,57 +1,48 @@
-import Refresh from "@/components/refresh";
-import Table from "@/components/table";
-import THeader from "@/components/table-header";
+"use client";
+import { useState } from 'react';
 
 export const dynamic = "force-dynamic";
 
-export default async function Queues() {
-  const qs = await getData();
-  const sorted = qs.sort((a, b) => {
-    if (a.size === b.size) {
-      if (a.name < b.name) {
-        return -1;
-      }
-      if (a.name > b.name) {
-        return 1;
-      }
+export default function Queues() {
 
-      return 0;
-    }
-    return a.size > b.size ? -1 : 1;
-  });
+  const [messages, setMessages] = useState([]);
+  const [inputValue, setInputValue] = useState('');
+
+  const handleMessageSubmit = (e) => {
+    e.preventDefault();
+    if (!inputValue.trim()) return;
+    setMessages([...messages, { text: inputValue, sender: 'user' }]);
+    setTimeout(() => {
+      setMessages([{ text: inputValue, sender: 'user' }, { text: 'The last time we observed T-90s in this vicinity was during Operation Sandstorm on 210815Z APR 24. A report from Task Force Bravo details the encounter: two T-90s were spotted providing cover for a logistics convoy attempting to resupply hostile forces in the region. They were engaged and destroyed by Apache helicopters from 1st Air Cavalry Brigade, approximately 20 kilometers southwest of our current location. Reference SPOTREP 199 for more information.', sender: 'bot' }]);
+    }, 2000);
+    
+    setInputValue('');
+  };
+    
   return (
     <>
-      <div className="mt-8 flex justify-end gap-2">
+      {/* <div className="mt-8 flex justify-end gap-2">
         <Refresh />
+      </div> */}
+      <div>
+      <div className="chat-window">
+        {messages.map((message, index) => (
+          <div key={index} className={`message ${message.sender}`}>
+            {message.text}
+          </div>
+        ))}
       </div>
-      <Table>
-        <thead className="bg-gray-50">
-          <tr>
-            <THeader name="Name" />
-            <THeader name="Size" />
-            <THeader name="Subscribers" />
-            <THeader name="Unacked" />
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-gray-200 bg-white">
-          {sorted.map((q) => (
-            <tr key={q.name}>
-              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm text-gray-500 sm:pl-6 ">
-                {q.name}
-              </td>
-              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                {q.size}
-              </td>
-              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                {q.subscribers}
-              </td>
-              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                {q.unacked}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+      <form onSubmit={handleMessageSubmit}>
+        <input
+          type="text"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          style={{ borderRadius: '10px' }}
+          placeholder="Ask something..."
+        />
+        <button type="submit">Send</button>
+      </form>
+    </div>
     </>
   );
 }
