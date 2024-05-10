@@ -23,7 +23,7 @@ export default function Header() {
               >
                 Jobs
               </a>
-              <a
+              {/* <a
                 href="/queues"
                 className={nextPath.includes("/queues") ? active : inactive}
               >
@@ -34,7 +34,7 @@ export default function Header() {
                 className={nextPath.includes("/nodes") ? active : inactive}
               >
                 Nodes
-              </a>
+              </a> */}
             </div>
           </div>
           <div className="flex items-center">

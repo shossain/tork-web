@@ -59,9 +59,9 @@ export default async function Jobs({
       <Table page={page} search={true} q={searchParams.q}>
         <thead className="bg-gray-50">
           <tr>
-            <THeader name="Name" />
+            <THeader name="Job Description" />
             <THeader name="Created at" />
-            <THeader name="Ended at" />
+            {/* <THeader name="Ended at" /> */}
             <THeader name="% Completed" />
             <THeader name="Runtime" />
             <THeader name="State" />
@@ -84,13 +84,13 @@ export default async function Jobs({
               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 {formatTimestamp(item.createdAt)}
               </td>
-              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+              {/* <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 {item.completedAt
                   ? formatTimestamp(item.completedAt)
                   : item.failedAt
                   ? formatTimestamp(item.failedAt)
                   : ""}
-              </td>
+              </td> */}
               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 {item.position
                   ? Math.round(((item.position - 1) / item.taskCount) * 100)
@@ -113,7 +113,7 @@ export default async function Jobs({
                     type="button"
                     className="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 hover:bg-gray-50"
                   >
-                    View
+                    Details
                   </button>
                 </Link>
                 {item.state === "RUNNING" || item.state === "SCHEDULED" ? (

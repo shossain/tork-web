@@ -62,7 +62,7 @@ export default function ViewTaskLog({ task }: { task: Task }) {
 
   return (
     <>
-      {task.name.includes("tank") && <button
+      <button
         type="button"
         className="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 hover:bg-gray-50"
         onClick={() => {
@@ -70,18 +70,8 @@ export default function ViewTaskLog({ task }: { task: Task }) {
           setOpen(true);
         }}
       >
-        Create SITREP
-      </button>}
-      {task.name.includes("created") && <button
-        type="button"
-        className="rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 hover:bg-gray-50"
-        onClick={() => {
-          refreshLog(page);
-          setOpen(true);
-        }}
-      >
-        Notify
-      </button>}
+        Create SPOTREP
+      </button>
       <Transition.Root show={open} as={Fragment}>
         <Dialog
           as="div"
@@ -118,7 +108,42 @@ export default function ViewTaskLog({ task }: { task: Task }) {
               >
                 <Dialog.Panel className="relative transform rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:p-6 sm:w-full sm:max-w-4xl">
                   <p className="bg-gray-200 p-4 whitespace-pre-line max-h-96 overflow-scroll">
-                    {contents ? contents : ""}
+                    <b>SPOTREP</b>
+                    <br />                  
+                    LINE 1 — DATE AND TIME: 101345Z MAY 24
+                    <br />
+                    LINE 2 — UNIT: Task Force Alpha
+                    <br />
+                    LINE 3 — SIZE: 1 enemy tank
+                    <br />
+                    LINE 4 — ACTIVITY: Traveling westward
+                    <br />
+                    LINE 5 — LOCATION: 34T EN 5678 6789 (Eastern Desert Region)
+                    <br />
+                    LINE 6 — UNIT: Russian T-90 Main Battle Tank
+                    <br />
+                    LINE 7 — TIME: 101330Z MAY 24
+                    <br />
+                    LINE 8 — EQUIPMENT:
+                    <ul className={"list-disc list-inside"}>
+                      <li>Armament: 125mm smoothbore gun, 7.62mm machine gun, 12.7mm anti-aircraft machine gun
+                      </li><li>Armor: Composite armor with ERA (Explosive Reactive Armor)
+                      </li><li>Speed: Up to 60 km/h off-road
+                      </li><li>Crew: 3 (Commander, Gunner, Driver)
+                      </li>
+                    </ul>
+                    LINE 9 — SENDER’S ASSESSMENT:
+                    <ul className={"list-disc list-inside"}>
+                    <li>Presence of Russian T-90 tank in Eastern Desert poses significant threat. Recommend continued surveillance and strategic response.</li>
+                    </ul>
+                    LINE 10 — NARRATIVE:
+                    <br />
+                    At 101330Z MAY 24, Task Force Alpha detected 1 Russian T-90 Main Battle Tank traveling westward in the Eastern Desert region at coordinates 34.5678° N, 45.6789° E. Tank observed moving at approximately 45 km/h, no immediate signs of engagement. Recommend alerting nearby units and formulating appropriate response.
+                    <br />
+                    LINE 11 — AUTHENTICATION:
+                    <ul className={"list-disc list-inside"}>
+                      <li>Task Force Alpha Commander, Lt. Col. Smith</li>
+                    </ul>
                   </p>
 
                   <div className="flex gap-1 mt-4 justify-between">
