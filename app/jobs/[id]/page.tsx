@@ -22,7 +22,7 @@ export default async function Job({ params: { id } }: { params: params }) {
     <>
       <div className="md:flex md:items-center md:justify-between">
         <div className="min-w-0 flex-1">
-          <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
+          <h2 className="text-xl leading-7 sm:truncate sm:text-3xl sm:tracking-tight">
             {job.name}
           </h2>
           <p className="hidden md:block text-sm text-gray-500 mt-3 whitespace-pre border-b-[1px] border-gray-300 pb-4">
@@ -32,7 +32,7 @@ export default async function Job({ params: { id } }: { params: params }) {
             <div className="mt-2 flex items-center text-sm text-gray-500">
               <StateBadge textSize="text-lg" name={job.state}></StateBadge>
             </div>
-            <div className="mt-2 flex items-center text-sm text-gray-500">
+            <div className="mt-2 flex items-center text-sm text-gray-300">
               <CalendarIcon
                 className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
                 aria-hidden="true"
@@ -40,7 +40,7 @@ export default async function Job({ params: { id } }: { params: params }) {
               Created at {formatTimestamp(job.createdAt)}
             </div>
             {job.completedAt || job.failedAt ? (
-              <div className="mt-2 flex items-center text-sm text-gray-500">
+              <div className="mt-2 flex items-center text-sm text-gray-300">
                 <CalendarIcon
                   className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
                   aria-hidden="true"
@@ -53,7 +53,7 @@ export default async function Job({ params: { id } }: { params: params }) {
             ) : (
               <></>
             )}
-            <div className="mt-2 flex items-center text-sm text-gray-500">
+            <div className="mt-2 flex items-center text-sm text-gray-300">
               <ClockIcon
                 className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
                 aria-hidden="true"

@@ -106,8 +106,8 @@ export default function ViewTaskLog({ task }: { task: Task }) {
                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
-                <Dialog.Panel className="relative transform rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:p-6 sm:w-full sm:max-w-4xl">
-                  <p className="bg-gray-200 p-4 whitespace-pre-line max-h-96 overflow-scroll text-xs">
+                <Dialog.Panel className="relative transform rounded-lg bg-black px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:p-6 sm:w-full sm:max-w-4xl">
+                  <p className="whitespace-pre-line max-h-96 overflow-scroll text-xs">
                     <b>SPOTREP</b>
                     <br />                  
                     LINE 1 — DATE AND TIME: 101345Z MAY 24
