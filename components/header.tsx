@@ -10,11 +10,13 @@ export default function Header() {
   const inactive =
     "inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700";
   return (
-    <nav className="bg-white shadow">
+    <header className="bg-white shadow">
+    <img src="/logo.png" width="120"></img>            
+    <nav>            
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 justify-between">
           <div className="flex">
-            <div className="hidden md:flex md:space-x-8">
+            <div className="hidden md:flex md:space-x-8 px-10">
               <a
                 href="/jobs"
                 className={nextPath.includes("/jobs") ? active : inactive}
@@ -49,5 +51,6 @@ export default function Header() {
         </div>
       </div>
     </nav>
+    </header>
   );
 }
