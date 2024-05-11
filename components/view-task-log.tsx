@@ -5,6 +5,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { ArrowLeftIcon, ArrowPathIcon } from "@heroicons/react/24/outline";
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import { format } from "date-fns";
+import Typewriter from 'typewriter-effect';
 
 export default function ViewTaskLog({ task }: { task: Task }) {
   const cancelButtonRef = useRef(null);
@@ -106,45 +107,42 @@ export default function ViewTaskLog({ task }: { task: Task }) {
                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
-                <Dialog.Panel className="relative transform rounded-lg bg-black px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:p-6 sm:w-full sm:max-w-4xl">
-                  <p className="whitespace-pre-line max-h-96 overflow-scroll text-xs">
-                    <b>SPOTREP</b>
-                    <br />                  
-                    LINE 1 — DATE AND TIME: 101345Z MAY 24
-                    <br />
-                    LINE 2 — UNIT: Task Force Alpha
-                    <br />
-                    LINE 3 — SIZE: 1 enemy tank
-                    <br />
-                    LINE 4 — ACTIVITY: Traveling westward
-                    <br />
-                    LINE 5 — LOCATION: 34T EN 5678 6789 (Eastern Desert Region)
-                    <br />
-                    LINE 6 — UNIT: Russian T-90 Main Battle Tank
-                    <br />
-                    LINE 7 — TIME: 101330Z MAY 24
-                    <br />
-                    LINE 8 — EQUIPMENT:
-                    <ul className={"list-disc list-inside"}>
-                      <li>Armament: 125mm smoothbore gun, 7.62mm machine gun, 12.7mm anti-aircraft machine gun
-                      </li><li>Armor: Composite armor with ERA (Explosive Reactive Armor)
-                      </li><li>Speed: Up to 60 km/h off-road
-                      </li><li>Crew: 3 (Commander, Gunner, Driver)
-                      </li>
-                    </ul>
-                    LINE 9 — SENDER’S ASSESSMENT:
-                    <ul className={"list-disc list-inside"}>
-                    <li>Presence of Russian T-90 tank in Eastern Desert poses significant threat. Recommend continued surveillance and strategic response.</li>
-                    </ul>
-                    LINE 10 — NARRATIVE:
-                    <br />
-                    At 101330Z MAY 24, Task Force Alpha detected 1 Russian T-90 Main Battle Tank traveling westward in the Eastern Desert region at coordinates 34.5678° N, 45.6789° E. Tank observed moving at approximately 45 km/h, no immediate signs of engagement. Recommend alerting nearby units and formulating appropriate response.
-                    <br />
-                    LINE 11 — AUTHENTICATION:
-                    <ul className={"list-disc list-inside"}>
-                      <li>Task Force Alpha Commander, Lt. Col. Smith</li>
-                    </ul>
-                  </p>
+                <Dialog.Panel className="rounded-lg px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:p-6 sm:w-full sm:max-w-4xl" style={{backgroundColor: '#333'}}>
+                  <div style={{height: 350}}> 
+                    <p className="whitespace-pre-line max-h-96 overflow-scroll text-xs">
+                      <Typewriter options={{ delay: 15 }}
+                        onInit={(typewriter) => { 
+                          typewriter.typeString(`<b>SPOTREP</b>
+                            LINE 1 — DATE AND TIME: 101345Z MAY 24
+                            LINE 2 — UNIT: Task Force Alpha
+                            LINE 3 — SIZE: 1 enemy tank
+                            LINE 4 — ACTIVITY: Traveling westward
+                            LINE 5 — LOCATION: 34T EN 5678 6789 (Eastern Desert Region)
+                            LINE 6 — UNIT: Russian T-90 Main Battle Tank
+                            LINE 7 — TIME: 101330Z MAY 24
+                            LINE 8 — EQUIPMENT:
+                            &nbsp;&nbsp;- Armament: 125mm smoothbore gun, 7.62mm machine gun, 12.7mm anti-aircraft machine gun
+                            &nbsp;&nbsp;- Armor: Composite armor with ERA (Explosive Reactive Armor)
+                            &nbsp;&nbsp;- Speed: Up to 60 km/h off-road
+                            &nbsp;&nbsp;- Crew: 3 (Commander, Gunner, Driver)
+                            LINE 9 — SENDER’S ASSESSMENT:
+                            &nbsp;&nbsp;- Presence of Russian T-90 tank in Eastern Desert poses significant threat. Recommend continued surveillance and strategic response.</li>
+                            LINE 10 — NARRATIVE:
+                            At 101330Z MAY 24, Task Force Alpha detected 1 Russian T-90 Main Battle Tank traveling westward in the Eastern Desert region at coordinates 34.5678° N, 45.6789° E. Tank observed moving at approximately 45 km/h, no immediate signs of engagement. Recommend alerting nearby units and formulating appropriate response.
+                            LINE 11 — AUTHENTICATION:
+                            &nbsp;&nbsp;- Task Force Alpha Commander, Lt. Col. Smith</li>
+                    
+                          `) 
+                          .callFunction(() => { 
+                            console.log('String typed out!'); 
+                          }) 
+                  
+                          .start(); 
+                        }} 
+                      />
+                    </p>
+                  </div>
+                  
 
                   <div className="flex gap-1 mt-4 justify-between">
                     <button
