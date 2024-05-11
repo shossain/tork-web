@@ -93,12 +93,6 @@ form {
   display: flex;
 }
 
-input {
-  color: black;
-  flex: 1;
-  margin-right: 10px;  
-}
-
 button {
   padding: 5px 10px;
   cursor: pointer;

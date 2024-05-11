@@ -52,7 +52,12 @@ export default function Queues() {
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          style={{ borderRadius: '10px' }}
+          style={{ 
+            borderRadius: '10px',
+            color: 'black',
+            flex: '1',
+            marginRight: '10px'   
+          }}
           placeholder="Ask something..."
         />
         <button style={{ border: '1px solid white', borderRadius: '10px' }} type="submit">Send</button>

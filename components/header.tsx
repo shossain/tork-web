@@ -23,12 +23,12 @@ export default function Header() {
               >
                 Jobs
               </a>
-               <Link
+               <a
                 href="/queues"
                 className={nextPath.includes("/queues") ? active : inactive}
               >
                 Chat
-              </Link>
+              </a>
               {/* <a
                 href="/nodes"
                 className={nextPath.includes("/nodes") ? active : inactive}
