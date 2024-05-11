@@ -1,6 +1,8 @@
 "use client";
 import { useState } from 'react';
 
+import Typewriter from 'typewriter-effect';
+
 export const dynamic = "force-dynamic";
 
 export default function Queues() {
@@ -26,9 +28,22 @@ export default function Queues() {
       </div> */}
       <div>
       <div className="chat-window">
+        
         {messages.map((message, index) => (
-          <div key={index} className={`message ${message.sender}`}>
-            {message.text}
+          <div className="flex flex-col">
+            <div key={index} className={`message ${message.sender}`}>
+              {message.sender === 'user' && <>{message.text}</>}
+              {message.sender === 'bot' && <Typewriter options={{ delay: 15 }}
+                onInit={(typewriter) => { 
+                  typewriter.typeString(message.text) 
+                    .callFunction(() => { 
+                      console.log('String typed out!'); 
+                    }) 
+            
+                    .start(); 
+                }} 
+              />}
+            </div>
           </div>
         ))}
       </div>
@@ -40,7 +55,7 @@ export default function Queues() {
           style={{ borderRadius: '10px' }}
           placeholder="Ask something..."
         />
-        <button type="submit">Send</button>
+        <button style={{ border: '1px solid white', borderRadius: '10px' }} type="submit">Send</button>
       </form>
     </div>
     </>
