@@ -97,7 +97,7 @@ export default async function Job({ params: { id } }: { params: params }) {
       <Table>
         <thead className="bg-gray-50">
           <tr>
-            <THeader name="Description" />
+            {/* <THeader name="Description" /> */}
             <THeader name="Started at" />
             <THeader name="Ended at" />
             {/* <THeader name="Runtime" /> */}
@@ -109,9 +109,9 @@ export default async function Job({ params: { id } }: { params: params }) {
         <tbody className="divide-y divide-gray-200 bg-white">
           {job.execution.reverse().map((task) => (
             <tr key={task.id}>
-              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm  text-gray-500 sm:pl-6">
+              {/* <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm  text-gray-500 sm:pl-6">
                 {truncateString(task.name, 30)}
-              </td>
+              </td> */}
               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 hidden md:table-cell">
                 {task.startedAt ? formatTimestamp(task.startedAt) : ""}
               </td>

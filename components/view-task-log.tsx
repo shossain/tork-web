@@ -113,7 +113,7 @@ export default function ViewTaskLog({ task }: { task: Task }) {
                 <Dialog.Panel className="rounded-lg px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:p-6 sm:w-full sm:max-w-4xl" style={{backgroundColor: '#333'}}>
                   <div style={{height: 350}}> 
                     <p className="whitespace-pre-line max-h-96 overflow-scroll text-xs">
-                      <Typewriter options={{ delay: 10 }}
+                      <Typewriter options={{ delay: 1 }}
                         onInit={(typewriter) => { 
                           typewriter.typeString(`<b>SPOTREP</b>
                             LINE 1 — DATE AND TIME: 101345Z MAY 24
