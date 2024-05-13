@@ -6,12 +6,14 @@ import { ArrowLeftIcon, ArrowPathIcon } from "@heroicons/react/24/outline";
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import { format } from "date-fns";
 import Typewriter from 'typewriter-effect';
+import Alert from "./alert";
 
 export default function ViewTaskLog({ task }: { task: Task }) {
   const cancelButtonRef = useRef(null);
   const [open, setOpen] = useState(false);
   const [contents, setContents] = useState("");
   const [page, setPage] = useState(1);
+  const [errorMsg, setErrorMsg] = useState("");
   const [totalPages, setTotalPages] = useState(1);
   const [tail, setTail] = useState(
     task.state === "RUNNING" || task.state === "SCHEDULED"
@@ -73,6 +75,7 @@ export default function ViewTaskLog({ task }: { task: Task }) {
       >
         Create SPOTREP
       </button>
+      <Alert message={errorMsg} />
       <Transition.Root show={open} as={Fragment}>
         <Dialog
           as="div"
@@ -110,7 +113,7 @@ export default function ViewTaskLog({ task }: { task: Task }) {
                 <Dialog.Panel className="rounded-lg px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:p-6 sm:w-full sm:max-w-4xl" style={{backgroundColor: '#333'}}>
                   <div style={{height: 350}}> 
                     <p className="whitespace-pre-line max-h-96 overflow-scroll text-xs">
-                      <Typewriter options={{ delay: 15 }}
+                      <Typewriter options={{ delay: 10 }}
                         onInit={(typewriter) => { 
                           typewriter.typeString(`<b>SPOTREP</b>
                             LINE 1 — DATE AND TIME: 101345Z MAY 24
@@ -144,10 +147,10 @@ export default function ViewTaskLog({ task }: { task: Task }) {
                   </div>
                   
 
-                  <div className="flex gap-1 mt-4 justify-between">
+                  <div className="flex gap-1 mt-4">
                     <button
                       type="button"
-                      className="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                      className="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 mr-5"
                       onClick={() => {
                         setContents("");
                         setOpen(false);
@@ -156,6 +159,16 @@ export default function ViewTaskLog({ task }: { task: Task }) {
                       ref={cancelButtonRef}
                     >
                       Close
+                    </button>
+                    <button
+                      type="button"
+                      className="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                      onClick={() => {
+                        setOpen(false);
+                        setErrorMsg("An email was sent to your team");                        
+                      }}                      
+                    >
+                      Distribute
                     </button>
                     <div className="flex gap-2">
                       {task.state === "RUNNING" ||

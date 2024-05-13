@@ -33,7 +33,7 @@ export default function Queues() {
           <div className="flex flex-col">
             <div key={index} className={`message ${message.sender}`}>
               {message.sender === 'user' && <>{message.text}</>}
-              {message.sender === 'bot' && <Typewriter options={{ delay: 15 }}
+              {message.sender === 'bot' && <Typewriter options={{ delay: 10 }}
                 onInit={(typewriter) => { 
                   typewriter.typeString(message.text) 
                     .callFunction(() => { 
