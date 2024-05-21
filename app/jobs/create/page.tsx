@@ -72,22 +72,28 @@ export default function Queues() {
       <div>
 
       <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Result" {...a11yProps(0)} />
-          <Tab label="Steps" {...a11yProps(1)} />
-          <Tab label="Tab 3" {...a11yProps(2)} />
-        </Tabs>
-      </Box>
-      <TabPanel value={value} index={0}>
-        Content for Tab 1.
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        Content for Tab 2.
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Content for Tab 3.
-      </TabPanel>
+        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+          <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" TabIndicatorProps={{style: {backgroundColor: "white"}}}>
+            <Tab label="Result" {...a11yProps(0)} sx={{
+                color: 'grey',
+                '&.Mui-selected': { color: '#ffff' },
+                
+              }} />
+            <Tab label="Steps" {...a11yProps(1)} sx={{
+                color: 'grey',
+                '&.Mui-selected': { color: '#ffff' },
+                
+              }}/>
+          </Tabs>
+        </Box>
+        <Box border={1} sx={{marginY: 2, height: 470, borderRadius: '10px', }}>
+        <TabPanel value={value} index={0}>
+          Content for Tab 1.
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          Content for Tab 2.
+        </TabPanel>
+        </Box>
     </Box>
       {/* <div className="chat-window">
         
