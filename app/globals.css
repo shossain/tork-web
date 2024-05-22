@@ -71,6 +71,11 @@ body {
   color: black;
 }
 
+.chat-window-new {
+  color: black;
+}
+
+
 .message {
   padding: 5px 10px;
   margin-bottom: 10px;
