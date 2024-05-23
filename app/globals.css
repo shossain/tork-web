@@ -102,3 +102,11 @@ button {
   padding: 5px 10px;
   cursor: pointer;
 }
+
+
+
+ul {
+  list-style-type: disc;
+  padding: 10px 0 !important;
+  padding-left: 20px !important;
+}

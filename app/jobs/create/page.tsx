@@ -129,10 +129,49 @@ if _name_ == "_main_":
   const handleMessageSubmit = (e) => {
     e.preventDefault();
     if (!inputValue.trim()) return;
-    setMessages([...messages, { text: inputValue, sender: 'user' }]);
-    setTimeout(() => {
-      setStep0(true)
-    }, 2000);
+    if (messages.length == 0) {
+      setMessages([...messages, { text: inputValue, sender: 'user' }]);
+      setTimeout(() => {
+        setMessages([...messages, { text: inputValue, sender: 'user' }, { text: `I will generate a daily Situation Report (SITREP) about Chinese military movements on the Fiery Cross Reef over the last 24 hours. In order to accomplish this, I will take the following steps:
+          <br />
+          <br />
+          <b>Step 1: Data Collection</b>
+          <ul>
+          <li>Retrieve real-time sensor data, from the past 24 hours, from our surveillance systems focused on Fiery Cross Reef and extract relevant metrics such as ship movements, aircraft activity, and other military operations detected.</li> 
+          </ul>
+          <b>Step 2: Open Source Intelligence (OSINT)</b>
+          <ul>
+          <li>Scan reliable open-source platforms including news websites, military forums, social media, and government publications for any reported activities or updates regarding Fiery Cross Reef.</li>
+          <li>Cross-reference sensor data with open-source information to verify and complement our findings.</li>
+          </ul>
+          <b>Step 3: Data Processing and Analysis</b>
+          <ul>
+          <li>Process the raw sensor data to filter out noise and identify significant movements or activities.</li>
+          <li>Synthesize open-source information with sensor data to create a comprehensive overview.</li>
+          </ul>
+          <b>Step 4: Report Generation</b>
+          <ul>
+          <li>Summarize the findings in our SITREP format, highlighting key movements and activities from the past 24 hours.</li>
+          <li>Include relevant links to data utilized in the report.</li>
+          </ul>
+          <b>Step 5: Quality Assurance</b>
+          <ul>
+          <li>Conduct a final review of the SITREP to ensure accuracy and completeness.</li>
+          <li>Validate the report against any new data or intelligence that might come in last minute before the report is dispatched.</li>
+          </ul>
+          <br />
+          <b>Do these steps look complete?</b> 
+          `, sender: 'bot' }]);
+      }, 2000)
+    } else {
+      setMessages([...messages, { text: inputValue, sender: 'user' }]);
+      setTimeout(() => {
+        setMessages([...messages, { text: inputValue, sender: 'user' }, { text: `Great, I will begin the task now. `, sender: 'bot' }]);
+        setTimeout(() => {
+          setStep0(true)
+        }, 3000)
+      }, 2000);
+    } 
     
     setInputValue('');
   };
@@ -152,7 +191,7 @@ if _name_ == "_main_":
       <Box sx={{ display: 'flex'}}>
       <Box sx={{ width: '60%'}}>
         CHAT
-        <Box sx={{marginY: 2, height: 470, borderRadius: '10px', border: 1, padding: 2 }}>
+        <Box sx={{marginY: 2, height: 470, borderRadius: '10px', border: 1, padding: 2, overflowY: 'auto' }}>
           {/* <Box sx={{ p: 2 }}> 
           {step5 && <Typewriter options={{ delay: 10, cursor: null }}
             onInit={(typewriter) => { 
@@ -172,7 +211,7 @@ if _name_ == "_main_":
           <div className="flex flex-col">
             <div key={index} className={`message ${message.sender}`}>
               {message.sender === 'user' && <>{message.text}</>}
-              {message.sender === 'bot' && <Typewriter options={{ delay: 10 }}
+              {message.sender === 'bot' && <Typewriter options={{ delay: 2, cursor: null }}
                 onInit={(typewriter) => { 
                   typewriter.typeString(message.text) 
                     .callFunction(() => { 
@@ -193,7 +232,7 @@ if _name_ == "_main_":
           CONSOLE
           <Box border={1} sx={{marginY: 2, height: 470, borderRadius: '10px',  borderColor: 'grey'}}>            
             <Box sx={{ p: 2, maxHeight: '100%', overflowY: 'auto' }}>              
-              {step0 && <Typewriter options={{ delay: 10, cursor: null }}
+              {step0 && <Typewriter options={{ delay: 2, cursor: null }}
                 onInit={(typewriter) => { 
                   typewriter.typeString("Accessing streaming data for the last 24 hours (satellite)....and executing the following script:") 
                     .callFunction(() => { 
@@ -226,13 +265,14 @@ if _name_ == "_main_":
                 }} 
               />}
               <br />
-              {step2 && <Typewriter options={{ delay: 10, cursor: null }}
+              {step2 && <Typewriter options={{ delay: 2, cursor: null }}
                 onInit={(typewriter) => { 
                   typewriter.typeString(`
-- 3 new structures being built on the eastern side of the reef <br/>
-- Sorties of Chinese J-11 fighter jets taking off and landing on the reef's airstrip<br/>
-- 4x PLA Navy vessels docked at the reef's harbor, including 2 destroyers and 2 auxiliary ships<br/>
-
+                  <ul>
+                    <li>3 new structures being built on the eastern side of the reef</li>
+                    <li>Sorties of Chinese J-11 fighter jets taking off and landing on the reef's airstrip</li>
+                    <li>4x PLA Navy vessels docked at the reef's harbor, including 2 destroyers and 2 auxiliary ships</li>
+                  </ul>
                   `) 
                     .callFunction(() => { 
                       console.log('String typed out!');
@@ -244,13 +284,14 @@ if _name_ == "_main_":
                 }} 
               />}
               <br />
-              {step3 && <Typewriter options={{ delay: 10, cursor: null }}
+              {step3 && <Typewriter options={{ delay: 2, cursor: null }}
                 onInit={(typewriter) => { 
                   typewriter.typeString(`
-Accessing news and tweets for mentions of relevancy in Fiery Cross Reef:<br />
-- Local maritime news organization, Reef and Maritime News, wrote an article about the building up of naval assets on the reef.<br />
-- Twitter has several posts about fisherman complaining about big ship heading toward the reef and disturbing their fishing locations <br />                 
-                  `) 
+Accessing news and tweets for mentions of relevancy in Fiery Cross Reef:
+<ul>
+<li>Local maritime news organization, Reef and Maritime News, wrote an article about the building up of naval assets on the reef.</li>
+<li>Twitter has several posts about fisherman complaining about big ship heading toward the reef and disturbing their fishing locations</li>              
+</ul>                  `) 
                     .callFunction(() => { 
                       console.log('String typed out!');
                       setTimeout(function() {
@@ -260,7 +301,7 @@ Accessing news and tweets for mentions of relevancy in Fiery Cross Reef:<br />
                     .start(); 
                 }} 
               />}
-              {step4 && <Typewriter options={{ delay: 10, cursor: null }}
+              {step4 && <Typewriter options={{ delay: 2, cursor: null }}
                 onInit={(typewriter) => { 
                   typewriter.typeString(`Combining them into a SITREP...........`) 
                     .callFunction(() => { 
