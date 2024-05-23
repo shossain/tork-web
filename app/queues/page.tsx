@@ -1,7 +1,16 @@
 "use client";
 import { useState } from 'react';
 
+import Box from '@mui/material/Box';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Typography from '@mui/material/Typography';
 import Typewriter from 'typewriter-effect';
+import { Paper, Avatar } from '@mui/material';
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
+import python from 'react-syntax-highlighter/dist/esm/languages/hljs/python';
+import { atomOneLight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+
 
 export const dynamic = "force-dynamic";
 
@@ -27,24 +36,42 @@ export default function Queues() {
         <Refresh />
       </div> */}
       <div>
-      <div className="chat-window">
-        
+      <div className="chat-window"> 
         {messages.map((message, index) => (
           <div className="flex flex-col">
-            <div key={index} className={`message ${message.sender}`}>
-              {message.sender === 'user' && <>{message.text}</>}
-              {message.sender === 'bot' && <Typewriter options={{ delay: 10 }}
-                onInit={(typewriter) => { 
-                  typewriter.typeString(message.text) 
-                    .callFunction(() => { 
-                      console.log('String typed out!'); 
-                    }) 
-            
-                    .start(); 
-                }} 
-              />}
+            <div key={index} className='text-white'>
+              {message.sender === 'user' && <Box 
+                sx={{
+                  marginBottom: 2, 
+                  display: 'flex',
+                  alignItems: 'top'}}>
+                  <Avatar sx={{marginRight: 2}}>M</Avatar>
+                  <Box><Typography><b>Mike</b></Typography>{message.text}</Box>
+                </Box>}
+              {message.sender === 'bot' && <Box 
+                sx={{
+                  marginBottom: 2, 
+                  display: 'flex',
+                  alignItems: 'top'}}>
+                  <Avatar sx={{marginRight: 2}}>P</Avatar>
+                  <Box>
+                    <Typography><b>Pytho</b></Typography>
+                    <Typewriter options={{ delay: 2, cursor: null }}
+                      onInit={(typewriter) => { 
+                        typewriter.typeString(message.text) 
+                          .callFunction(() => { 
+                            console.log('String typed out!'); 
+                          }) 
+                  
+                          .start(); 
+                      }} 
+                    />
+                  </Box>
+                </Box>
+                }
             </div>
           </div>
+          
         ))}
       </div>
       <form onSubmit={handleMessageSubmit}>
